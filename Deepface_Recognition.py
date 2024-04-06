@@ -23,7 +23,7 @@ def stream():
     if src == "Laptop Camera":
         source=0
     elif src == "IP Camera":
-        source = "http://192.168.213.37:8080/video"
+        source = "http://192.168.3.127:8080/video"
     elif src == "Video upload":
         video_buffer = st.sidebar.file_uploader("Choose a video", type=["mp4" , "avi" , "mov" , "asf", "m4v",'jpg', "jpeg", "png"])
         DEMO_VIDEO = 'my_video.mp4'
