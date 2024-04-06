@@ -1,0 +1,31 @@
+from deepface import DeepFace as dp
+import matplotlib.pyplot as plt
+import cv2
+import torch
+import numpy as np  
+
+if torch.cuda.is_available():
+    torch.cuda.set_device(0)  # Select GPU device 0
+
+img1= "Deepface\AG\AG.jpg"
+img2= "Deepface\panjabi_me.jpg"
+img3= "Deepface\Dips_pp.png"
+
+
+# img = dp.detectFace(img1)
+# print(type(img))
+# print(img)
+
+# plt.imshow(dp.detectFace(img1));plt.show()
+
+# plt.imshow(dp.detectFace(img2));plt.show()
+
+# plt.imshow(dp.detectFace(img3));plt.show()
+
+# print(dp.verify(img1,img3))
+
+# print(dp.find(img_path=img1,db_path="Deepface"))
+
+print(dp.analyze(img1))
+
+dp.stream(db_path = "E:\SBHcodes",time_threshold=0, frame_threshold=0,detector_backend="retinaface")
