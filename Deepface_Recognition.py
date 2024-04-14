@@ -23,13 +23,8 @@ def stream():
     if src == "Laptop Camera":
         source=0
     elif src == "IP Camera":
-<<<<<<< HEAD
         source = "http://172.16.38.175:8080/video"
     elif src == "Media upload":
-=======
-        source = "http://192.168.3.127:8080/video"
-    elif src == "Video upload":
->>>>>>> f2d4168c0dae451368830162c6cce5d8f95348e5
         video_buffer = st.sidebar.file_uploader("Choose a video", type=["mp4" , "avi" , "mov" , "asf", "m4v",'jpg', "jpeg", "png"])
         DEMO_VIDEO = 'my_video.mp4'
         tffile = tempfile.NamedTemporaryFile(suffix = '.mp4', delete=False)
