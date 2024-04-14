@@ -1,4 +1,4 @@
-db={"AG":[r"Deepface\AG\AG.jpg",
+db={"ARUNANGSHU":[r"Deepface\AG\AG.jpg",
           r"Deepface\AG\panjabi_me.jpg",
           r"Deepface\AG\Self.jpeg",
           r"Deepface\AG\1.jpg",
@@ -9,11 +9,11 @@ db={"AG":[r"Deepface\AG\AG.jpg",
           r"Deepface\AG\6.jpg",
           r"Deepface\AG\7.jpg",
           ],
-    "MB":[r"Deepface\MB\MB.jpg",
+    "MOHINI":[r"Deepface\MB\MB.jpg",
           r"Deepface\MB\Acropolis.jpg",
           r"Deepface\MB\Rakhi.png"
           ],
-    "DEBO":[r"Deepface\DEBO\DEBO.jpg",
+    "DEBOJYOTI":[r"Deepface\DEBO\DEBO.jpg",
             r"Deepface\DEBO\1.jpg",
             r"Deepface\DEBO\2.jpg",
             r"Deepface\DEBO\3.jpg",
@@ -21,11 +21,22 @@ db={"AG":[r"Deepface\AG\AG.jpg",
             r"Deepface\DEBO\5.jpg",
             r"Deepface\DEBO\6.jpg",
             ],
-    "DIPS":[r"Deepface\DIPS\Dips_pp.png"
+    "DIPTIMOY":[r"Deepface\DIPS\1.jpg",
+                r"Deepface\DIPS\2.jpg",
+                r"Deepface\DIPS\3.jpg",
+                r"Deepface\DIPS\4.jpg",
+                r"Deepface\DIPS\5.jpg"
             ],
-    "MMM":[r"Deepface\MMM\SM1.jpg",
-           r"Deepface\MMM\SM2.jpg",
-           r"Deepface\MMM\SM3.jpg"]
+    "SAGNIK":[],
+    "DOGRA SIR":[r"Deepface\DOGRA SIR\1.jpg",
+                 r"Deepface\DOGRA SIR\2.jpg",
+                 r"Deepface\DOGRA SIR\3.jpg",
+                 r"Deepface\DOGRA SIR\4.jpg",
+                 r"Deepface\DOGRA SIR\5.jpg",
+                 r"Deepface\DOGRA SIR\6.jpg",
+                 r"Deepface\DOGRA SIR\7.jpg",
+                 r"Deepface\DOGRA SIR\8.jpg"
+                 ]
     # "Crowd":[r"Deepface\CROWD\Crowd_SS.png",
     #          r"Deepface\CROWD\C_sample1.jpg"
     #         ]

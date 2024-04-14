@@ -16,15 +16,15 @@ def stream():
     st.sidebar.title("Settings")
     src = st.sidebar.radio(
         "Choose one of the sources below",
-        ["Laptop Camera","IP Camera", "Video upload"],
-        captions=["","http://192.168.213.37:8080/video",""]
+        ["Laptop Camera","IP Camera", "Media upload"],
+        captions=["","http://172.16.38.175:8080/video",""]
     )
     
     if src == "Laptop Camera":
         source=0
     elif src == "IP Camera":
-        source = "http://192.168.213.37:8080/video"
-    elif src == "Video upload":
+        source = "http://172.16.38.175:8080/video"
+    elif src == "Media upload":
         video_buffer = st.sidebar.file_uploader("Choose a video", type=["mp4" , "avi" , "mov" , "asf", "m4v",'jpg', "jpeg", "png"])
         DEMO_VIDEO = 'my_video.mp4'
         tffile = tempfile.NamedTemporaryFile(suffix = '.mp4', delete=False)
@@ -73,7 +73,7 @@ def main(stop_button_pressed, frame_placeholder, source=0):
 # def main():
     if torch.cuda.is_available():
         torch.cuda.set_device(0)  # Select GPU device 0
-    
+        
     print("Starting Face Detection...\nPlease wait.")
     source=source
     print(source)
@@ -102,6 +102,7 @@ def main(stop_button_pressed, frame_placeholder, source=0):
         print(img.shape)
         
         n = img.shape[0] / 720
+        # n=1
         print(f"n={n}")
         faces = dp.extract_faces(img,
                                 enforce_detection=False,
@@ -125,7 +126,8 @@ def main(stop_button_pressed, frame_placeholder, source=0):
                 y= xywh['y']
                 w= xywh['w']
                 h= xywh['h']
-                det_face = img[y  : y + h , x  : x + w ] #coordinates of one face
+                # det_face = img[y  : y + h , x  : x + w ] #coordinates of one cropped face
+                det_face = img[y - h//4  : y + h + h//4 , x - w // 4  : x + w + w//4] #coordinates of one cropped face - margins expanded
                 
                 # cv2.imshow('cropped', det_face) 
                 # cv2.waitKey(0)
@@ -134,6 +136,7 @@ def main(stop_button_pressed, frame_placeholder, source=0):
                 try:
                     #return a dictionary with the most similar person
                     print(f"face:{i+1}")
+                    # cv2.putText(img, f"{i+1}", ( int(xywh['x']-10* n) , int(xywh['y']-10* n )), cv2.FONT_HERSHEY_SIMPLEX, (1*n), (0,0,0), int(2* n))
                     dfs=dp.find(det_face,"Deepface",
                     # model_name="GhostFaceNet",
                     # detector_backend="retinaface",
@@ -160,7 +163,8 @@ def main(stop_button_pressed, frame_placeholder, source=0):
                         # print(dfs[0].head(1),name)
                         label=img.copy()
                         # print((xywh['x'],int(xywh['y']-40* n) ))
-                        cv2.rectangle(label,(xywh['x'],int(xywh['y']-40* n) ),(int(xywh['x']+100* n) ,xywh['y']),(52, 177, 235),-1) #bgr
+                        # cv2.rectangle(label,(xywh['x'],int(xywh['y']-40* n) ),(int(xywh['x']+100* n) ,xywh['y']),(52, 177, 235),-1) #bgr
+                        cv2.rectangle(label,(xywh['x'],int(xywh['y']-40* n) ),(int(xywh['x']+xywh['w']) ,xywh['y']),(52, 177, 235),-1) #bgr
                 
                         alpha = 0.5 #transparency
                         
@@ -173,6 +177,8 @@ def main(stop_button_pressed, frame_placeholder, source=0):
                     dfs = []
                     name = ""
                     print("ValueError")
+                    # cv2.putText(img, f"Match error", ( int(xywh['x']+10* n) , int(xywh['y']-10* n )), cv2.FONT_HERSHEY_SIMPLEX, (1*n), (100,0,1), int(2* n))
+                    # cv2.putText()
                     # cv2.imshow('ValueError',det_face)
                     # cv2.waitKey(0)
             #   cv2.circle(img,(xywh['x'],xywh['y']), 50, (255,0,255), -1 )
@@ -205,8 +211,8 @@ def main(stop_button_pressed, frame_placeholder, source=0):
             break
         
         # kill open cv things
-    # cap.release()
-    # cv2.destroyAllWindows()
+    cap.release()
+    cv2.destroyAllWindows()
 
 
 def freeze_frame(frame):
