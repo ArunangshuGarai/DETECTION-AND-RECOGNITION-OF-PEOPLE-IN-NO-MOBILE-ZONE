@@ -16,8 +16,8 @@ def stream():
     st.sidebar.title("Settings")
     src = st.sidebar.radio(
         "Choose one of the sources below",
-        ["Laptop Camera","IP Camera", "Media upload"],
-        captions=["","http://172.16.38.175:8080/video",""]
+        ["Laptop Camera","IP Camera", "Media upload","YouTube video"],
+        captions=["","http://172.16.38.175:8080/video","",""]
     )
     
     if src == "Laptop Camera":
@@ -28,9 +28,7 @@ def stream():
         video_buffer = st.sidebar.file_uploader("Choose a video", type=["mp4" , "avi" , "mov" , "asf", "m4v",'jpg', "jpeg", "png"])
         DEMO_VIDEO = 'my_video.mp4'
         tffile = tempfile.NamedTemporaryFile(suffix = '.mp4', delete=False)
-        
-        
-                
+              
         if not video_buffer:
             vid = cv2.VideoCapture(DEMO_VIDEO)
             tffile.name = DEMO_VIDEO
@@ -49,6 +47,9 @@ def stream():
             
             st.sidebar.text('Input Video')
             st.sidebar.video(demo_bytes)
+            
+    elif src == "YouTube video":
+        source = st.sidebar.text_input("Enter YouTube Link")
         
     col1, col2 = st.columns([1,3])
 
@@ -101,7 +102,7 @@ def main(stop_button_pressed, frame_placeholder, source=0):
         # img = cv2.resize(img, (352, 288))
         print(img.shape)
         
-        n = img.shape[0] / 720
+        n = img.shape[0] / 720 # !scale
         # n=1
         print(f"n={n}")
         faces = dp.extract_faces(img,
