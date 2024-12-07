@@ -13,7 +13,7 @@ def video():
     cv2.setMouseCallback("ROI", points)
 
     model = YOLO("yolov8n.pt")
-    source="0"
+    source=r"Test Media\SIH.jpg" 
 
     for result in model.track(source=source,show=False, stream=True):
 
@@ -32,3 +32,4 @@ def video():
         if(cv2.waitKey(0) & 0xFF == ord("q")):
             # cv2.destroyAllWindows()
             break
+video()

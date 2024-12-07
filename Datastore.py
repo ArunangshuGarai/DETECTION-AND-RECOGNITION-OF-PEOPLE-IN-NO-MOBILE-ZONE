@@ -45,20 +45,13 @@ db={"ARUNANGSHU":[r"Deepface\AG\AG.jpg",
                  r"Deepface\DOGRA SIR\7.jpg",
                  r"Deepface\DOGRA SIR\8.jpg"
                  ]
-    # "Crowd":[r"Deepface\CROWD\Crowd_SS.png",
-    #          r"Deepface\CROWD\C_sample1.jpg"
-    #         ]
-    }
-# print(db.values())
-# print("\n")
+        }
+
 
 def find_name(path):
-    # print("ok")
     print(path) 
     for i in db.keys():
         if path in db[i]:
             return i
-        # print(db[i])
     else:return 'Unknown' 
         
-# print(find_name("Deepface\AG\3.jpg"))
